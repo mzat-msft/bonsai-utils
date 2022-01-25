@@ -1,4 +1,4 @@
-from setuptools import setup, find_namespace_packages
+from setuptools import find_namespace_packages, setup
 
 with open("README.md", "r") as fh:
     LONG_DESCRIPTION = fh.read()

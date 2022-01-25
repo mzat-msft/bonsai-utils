@@ -4,9 +4,9 @@ Main connector to Log Analytics.
 Please check:
 https://docs.microsoft.com/en-us/python/api/overview/azure/monitor-query-readme?view=azure-python
 """
-from copy import deepcopy
 import json
 import os
+from copy import deepcopy
 from typing import Union
 
 import pandas as pd
