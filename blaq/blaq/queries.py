@@ -106,6 +106,8 @@ def get_assessment_data(
               | sort by Timestamp_t desc
           ) on EpisodeId_g
           | project
+              Brain=BrainName_s,
+              BrainVersion=BrainVersion_d,
               AssessmentName = AssessmentName_s,
               EpisodeId = EpisodeId_g,
               IterationIndex = IterationIndex_d,
