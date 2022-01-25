@@ -51,11 +51,17 @@ class LogsQueryConnector:
         return df
 
 
-def is_json(elem):
+def is_json_dict(elem):
+    """Return True when elem is properly formed JSON dictionary."""
     try:
-        json.loads(elem)
-        return True
+        parsed = json.loads(elem)
     except (json.decoder.JSONDecodeError, TypeError):
+        return False
+
+    try:
+        parsed.keys()
+        return True
+    except AttributeError:
         return False
 
 
@@ -69,7 +75,7 @@ def columnify_json(df_orig: pd.DataFrame, keep_orig=False) -> pd.DataFrame:
         raise ValueError("df.index must be in range(0, len(df) - 1)")
 
     for col in df.columns:
-        if df[col].apply(is_json).sum() == 0:
+        if df[col].apply(is_json_dict).sum() == 0:
             continue
         col_json = df[col].fillna('{}').apply(lambda x: json.loads(x))
         # TODO: Understand why pd.json_normalize casts some int to float
