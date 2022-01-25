@@ -5,23 +5,32 @@ Bonsai.
 
 ## Install
 
-The package can be used as a library. At the moment the only way it can be
-installed is by
+The package can be used as a library.  Currently, the package is not available
+on PyPI, therefore it can be installed in two alternative ways.
+After successful installation you can simply import the functions defined in
+the package.  For a selected list of available functions please read below.
 
-1. Cloning the [bonsai-utils](https://github.com/mzat-msft/bonsai-utils) repo
-2. In `bonsai-utils/blaq` folder, type
+#### Install by cloning the repo
+
+First clone the [bonsai-utils](https://github.com/mzat-msft/bonsai-utils) repo.
+Then, `cd` into `bonsai-utils/blaq` and type
 
 ```bash
 pip install .
 ```
 
-After that you can simply import the functions defined in the package.
-For a selected list of available functions please keep reading.
+#### Install from Github link
+
+Type in a shell
+
+```bash
+pip install -e 'git+https://github.com/mzat-msft/bonsai-utils/#egg=pkg&subdirectory=blaq'
+```
 
 ## Queries
 
 All queries assumes that the user provides the LogAnalytics workspace ID as
-env variable named `LOG_WORKSPACE_ID`. This information can be obtained from
+env variable named `LOG_WORKSPACE_ID`.  This information can be obtained from
 the azure portal page related to the workspace in Bonsai's Resource Group.
 
 Queries results are returned to the user as Pandas' dataframes.
