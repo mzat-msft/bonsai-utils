@@ -1,7 +1,7 @@
+import pandas as pd
 import pytest
 
-from blaq.queries import is_json_dict
-
+from blaq.queries import columnify_json, is_json_dict
 
 json_samples = [
     ("{'key': 'val'}", False),
@@ -25,3 +25,17 @@ json_samples = [
 @pytest.mark.parametrize("test_inp, exp", json_samples)
 def test_is_json(test_inp, exp):
     assert is_json_dict(test_inp) == exp
+
+
+json_dfs = [
+    ({'col': [1, 2, 4]}, {'col'}),
+    ({'col': []}, {'col'}),
+    ({'col': ['{"key": 1}', '{"key": 4}']}, {'key'}),
+    ({'col': ['{"foo": 1}', '{"bar": 4}']}, {'foo', 'bar'}),
+]
+
+
+@pytest.mark.parametrize("test_inp, exp", json_dfs)
+def test_columnify_json(test_inp, exp):
+    df = pd.DataFrame(test_inp)
+    assert set(columnify_json(df).columns) == exp
