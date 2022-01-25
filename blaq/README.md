@@ -28,7 +28,7 @@ Queries results are returned to the user as Pandas' dataframes.
 
 ### Get all data from a custom assessment
 
-A query to get all information related to an assessment.
+A helper function to get all entries related to a custom assessment.
 
 Example usage:
 
@@ -36,4 +36,6 @@ Example usage:
 from blaq import get_assessment_data
 
 data = get_assessment_data('custom_assessment_1', brain_name='brain', brain_version='21')
+data = get_assessment_data('custom_assessment_1', brain_name='brain')
+data = get_assessment_data('custom_assessment_1')
 ```
