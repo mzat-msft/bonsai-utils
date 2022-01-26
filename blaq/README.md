@@ -48,3 +48,15 @@ data = get_assessment_data('custom_assessment_1', brain_name='brain', brain_vers
 data = get_assessment_data('custom_assessment_1', brain_name='brain')
 data = get_assessment_data('custom_assessment_1')
 ```
+
+### Run a custom query
+
+If none of the implemented queries is useful for your use case, you can
+always run a custom query by using the function
+
+```python
+get_query(query, flatten_json=True)
+```
+
+`flatten_json` is used for flattening json columns, that is create a column
+for each key in a json dictionary.

@@ -14,8 +14,8 @@ from azure.identity import DefaultAzureCredential
 from azure.monitor.query import LogsQueryClient, LogsQueryStatus
 
 __all__ = [
-    'LogsQueryConnector',
     'get_assessment_data',
+    'get_query',
 ]
 
 
@@ -95,6 +95,22 @@ def columnify_json(df_orig: pd.DataFrame, keep_orig=False) -> pd.DataFrame:
     return df
 
 
+def get_query(query: str, *, flatten_json: bool = True):
+    """
+    Run query and return corresponding dataframe.
+
+    If flatten_json is set to True, columns in the dataframe that contain a
+    json dictionary are 'flattened', that is each key of the dictionary becomes
+    a column of the dataframe.
+    """
+    log_query = LogsQueryConnector()
+    data = log_query.query(query)
+
+    if columnify_json:
+        return columnify_json(data)
+    return data
+
+
 def get_assessment_data(
         assessment_name: str,
         *,
@@ -137,7 +153,5 @@ def get_assessment_data(
               EpisodeType = EpisodeType_s
           | order by EpisodeId asc, IterationIndex asc
     """
-    log_query = LogsQueryConnector()
-    data = log_query.query(query)
-    data = columnify_json(data)
+    data = get_query(query)
     return data
