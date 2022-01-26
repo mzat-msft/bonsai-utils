@@ -65,6 +65,13 @@ def is_json_dict(elem):
         return False
 
 
+def parse_json(elem):
+    """Parse JSON string into a python object"""
+    if not elem:
+        elem = '{}'
+    return json.loads(elem)
+
+
 def columnify_json(df_orig: pd.DataFrame, keep_orig=False) -> pd.DataFrame:
     """Search for JSON in columns and normalize into multiple columns."""
     df = deepcopy(df_orig)
@@ -77,7 +84,7 @@ def columnify_json(df_orig: pd.DataFrame, keep_orig=False) -> pd.DataFrame:
     for col in df.columns:
         if df[col].apply(is_json_dict).sum() == 0:
             continue
-        col_json = df[col].fillna('{}').apply(lambda x: json.loads(x))
+        col_json = df[col].apply(lambda x: parse_json(x))
         # TODO: Understand why pd.json_normalize casts some int to float
         df_col = pd.json_normalize(col_json)
         if len(df_col) and not df_col.empty:
