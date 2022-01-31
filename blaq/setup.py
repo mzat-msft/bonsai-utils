@@ -18,6 +18,6 @@ setup(
     install_requires=[
         "azure-identity",
         "azure-monitor-query",
-        "pandas",
+        "pandas>=1.3",
     ],
 )
