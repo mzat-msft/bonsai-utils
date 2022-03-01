@@ -1,4 +1,4 @@
-from setuptools import find_namespace_packages, setup
+from setuptools import find_packages, setup
 
 with open("README.md", "r") as fh:
     LONG_DESCRIPTION = fh.read()
@@ -13,7 +13,7 @@ setup(
     description="LogAnalytics queries collection for Bonsai",
     long_description=LONG_DESCRIPTION,
     long_description_content_type="text/markdown",
-    packages=find_namespace_packages(include=["blaq.*"]),
+    packages=find_packages(),
     license_files=('LICENSE.txt',),
     install_requires=[
         "azure-identity",
