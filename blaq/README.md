@@ -24,7 +24,7 @@ pip install .
 Type in a shell
 
 ```bash
-pip install -e 'git+https://github.com/mzat-msft/bonsai-utils/#egg=blaq&subdirectory=blaq'
+pip install 'git+https://github.com/mzat-msft/bonsai-utils/#egg=blaq&subdirectory=blaq'
 ```
 
 ## Queries
